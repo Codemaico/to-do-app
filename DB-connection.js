@@ -17,6 +17,9 @@ module.exports = async function connectToDatabase(){
     });
 
     const db = client.db("todos");
+
+    await db.collection('todos').deleteMany({});
+    
     await db.collection('todos').insertMany([
         {desc: 'First todo', completed: false},
         {desc: 'Write code', completed: true},
