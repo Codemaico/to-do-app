@@ -52,6 +52,13 @@ app.patch('/todos/:_id', async (req, res) => {
   }
 });
 
+
+// delete todos
+
+app.delete('/todos/:_id', async (req, res) => {
+
+});
+
 app.listen(8081, () => {
   console.log("Server is running on port 8081");
 });
