@@ -132,7 +132,11 @@ const Item: React.FC<ItemProps> = (props) => {
           checked={completed}
           onChange={props.onToggle}
         />
-        <label><small>Tick box when done</small></label>
+        <label></label>
+        
+      </div>
+      <div style={{ margin: "10px" }}>
+        <i className="trash icon"></i>
       </div>
     </div>
   );

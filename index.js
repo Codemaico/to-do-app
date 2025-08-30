@@ -56,7 +56,22 @@ app.patch('/todos/:_id', async (req, res) => {
 // delete todos
 
 app.delete('/todos/:_id', async (req, res) => {
-
+  const { _id } = req.params;
+  const { completed } = req.body;
+  const db = await connectToDatabase();
+  const { ObjectId } = require("mongodb");
+  let objectId;
+  try {
+    objectId = new ObjectId(_id);
+  } catch (e) {
+    return res.status(400).json({ success: false, message: "Invalid ID format" });
+  }
+  const result = await db.collection("todos").deleteOne({ _id: objectId });
+  if (result.deletedCount === 1) {
+    res.json({ success: true });
+  } else {
+    res.status(404).json({ success: false, message: "Todo not found" });
+  }
 });
 
 app.listen(8081, () => {
