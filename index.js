@@ -22,7 +22,7 @@ app.get("/todos", async (req, res) => {
 });
 
 // Insert todos
-app.post('/todos', async (req, res) => {
+app.post("/todos", async (req, res) => {
   const newTodo = req.body;
   const db = await connectToDatabase();
   await db.collection("todos").insertOne(newTodo);
@@ -30,7 +30,7 @@ app.post('/todos', async (req, res) => {
 });
 
 // Update a todo's completed status
-app.patch('/todos/:_id', async (req, res) => {
+app.patch("/todos/:_id", async (req, res) => {
   const { _id } = req.params;
   const { completed } = req.body;
   const db = await connectToDatabase();
@@ -39,12 +39,13 @@ app.patch('/todos/:_id', async (req, res) => {
   try {
     objectId = new ObjectId(_id);
   } catch (e) {
-    return res.status(400).json({ success: false, message: "Invalid ID format" });
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid ID format" });
   }
-  const result = await db.collection("todos").updateOne(
-    { _id: objectId },
-    { $set: { completed: completed } }
-  );
+  const result = await db
+    .collection("todos")
+    .updateOne({ _id: objectId }, { $set: { completed: completed } });
   if (result.modifiedCount === 1) {
     res.json({ success: true });
   } else {
@@ -52,19 +53,19 @@ app.patch('/todos/:_id', async (req, res) => {
   }
 });
 
-
 // delete todos
 
-app.delete('/todos/:_id', async (req, res) => {
+app.delete("/todos/:_id", async (req, res) => {
   const { _id } = req.params;
-  const { completed } = req.body;
   const db = await connectToDatabase();
   const { ObjectId } = require("mongodb");
   let objectId;
   try {
     objectId = new ObjectId(_id);
   } catch (e) {
-    return res.status(400).json({ success: false, message: "Invalid ID format" });
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid ID format" });
   }
   const result = await db.collection("todos").deleteOne({ _id: objectId });
   if (result.deletedCount === 1) {

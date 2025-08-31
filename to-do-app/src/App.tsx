@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   return (
-    <div style={{ maxWidth: "60%", height: "auto", margin: "0 auto", overflowY: "auto" }}>
+    <div style={{ width: "40%", height: "auto", margin: "0 auto", overflowY: "hidden" }}>
       <List />
     </div>
   );
@@ -80,13 +80,21 @@ const List = () => {
     setNewTask("");
   };
 
+
+  const deleteTask = async (id: string) => {
+    await fetch(`http://localhost:8081/todos/${id}`, {
+      method: "DELETE",
+    });
+    fetchTodos();
+  };
+
   const items = todos.map((todo) => (
-    <Item todo={todo} key={todo._id} onToggle={() => handleToggle(todo._id, todo.completed)} />
+    <Item todo={todo} key={todo._id} onToggle={() => handleToggle(todo._id, todo.completed)} onDelete={() => deleteTask(todo._id)} />
   ));
 
   return (
-    <div className="ui form" style={{marginTop: "40px", padding: "20px", 
-    border: "1px solid #eee", borderRadius: "5px", backgroundColor: "#f9f9f9"}}>
+    <div className="ui form" style={{marginTop: "20px", padding: "20px", 
+    border: "1px solid #eee", borderRadius: "5px", backgroundColor: "#a9b4a9"}}>
       <div className="field" >
         <label><h2>TO-DO List</h2></label>
         {/* Controlled input for new task */}
@@ -113,6 +121,7 @@ const List = () => {
 interface ItemProps {
   todo: Todo;
   onToggle: () => void;
+  onDelete: () => void;
 }
 
 const Item: React.FC<ItemProps> = (props) => {
@@ -135,8 +144,8 @@ const Item: React.FC<ItemProps> = (props) => {
         <label></label>
         
       </div>
-      <div>
-        <i className="trash icon" style={{ margin: "10px 10px", padding: "8px 10px", color: "#A30000" }}></i>
+      <div onClick={props.onDelete}>
+        <i className="trash icon" style={{ margin: "10px 10px", padding: "8px 10px", color: "#A30000" }} ></i>
       </div>
     </div>
   );
