@@ -136,7 +136,7 @@ const Item: React.FC<ItemProps> = (props) => {
         
       </div>
       <div>
-        <i className="trash icon" style={{ margin: "10px 10px", padding: "8px 10px", color: "A30000#" }}></i>
+        <i className="trash icon" style={{ margin: "10px 10px", padding: "8px 10px", color: "#A30000" }}></i>
       </div>
     </div>
   );
