@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   return (
-    <div style={{ maxWidth: "75%", minHeight: "500px", margin: "0 auto", overflowY: "auto" }}>
+    <div style={{ maxWidth: "60%", height: "auto", margin: "0 auto", overflowY: "auto" }}>
       <List />
     </div>
   );
@@ -85,9 +85,9 @@ const List = () => {
   ));
 
   return (
-    <div className="ui form" style={{margin: "40px", padding: "20px", 
+    <div className="ui form" style={{marginTop: "40px", padding: "20px", 
     border: "1px solid #eee", borderRadius: "5px", backgroundColor: "#f9f9f9"}}>
-      <div className="field" style={{marginBottom: "20px"}}>
+      <div className="field" >
         <label><h2>TO-DO List</h2></label>
         {/* Controlled input for new task */}
         <input
@@ -98,11 +98,11 @@ const List = () => {
         />
       </div>
       {/* Button to add a new task */}
-      <button className="positive ui button " onClick={handleAddTask}>
+      <button className="positive ui button " onClick={handleAddTask} style={{marginBottom: "30px", padding: "10px 20px"}}>
         <i className="plus icon"></i>
         Add Task
       </button>
-      <div className="ui relaxed divided list" style={{ marginBottom: "20px" }}>
+      <div className="ui relaxed divided list" >
         <h1>Tasks</h1>
         {items}
       </div>
@@ -118,8 +118,8 @@ interface ItemProps {
 const Item: React.FC<ItemProps> = (props) => {
   const { desc, completed } = props.todo;
   return (
-    <div className="item" style={{ display: "flex", alignItems: "center"}}>
-      <div className="content" style={{ flexGrow: 1, margin: "10px 0" }}>
+    <div className="item" style={{ display: "flex", alignItems: "center", padding: "8px 10px", borderBottom: "1px solid #eee" }}>
+      <div className="content" style={{ flexGrow: 2, margin: "10px 0" }}>
         <div className="header"><h3>{desc}</h3></div>
         <div style={{ margin: "8px 0" }}> <p>{completed ? "Completed" : "Pending"}</p> </div>
       </div>
@@ -135,8 +135,8 @@ const Item: React.FC<ItemProps> = (props) => {
         <label></label>
         
       </div>
-      <div style={{ margin: "10px" }}>
-        <i className="trash icon"></i>
+      <div>
+        <i className="trash icon" style={{ margin: "10px 10px", padding: "8px 10px", color: "A30000#" }}></i>
       </div>
     </div>
   );
