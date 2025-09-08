@@ -1,10 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import React, { useState, useEffect } from "react";
+import "./app.css"
 
 function App() {
   return (
-    <div style={{ width: "40%", height: "auto", margin: "0 auto", overflowY: "hidden" }}>
+    <div style={{ width: "50%", height: "auto", margin: "0 auto", overflowY: "hidden" }}>
       <List />
     </div>
   );
@@ -94,7 +95,7 @@ const List = () => {
 
   return (
     <div className="ui form" style={{marginTop: "20px", padding: "20px", 
-    border: "1px solid #eee", borderRadius: "5px", backgroundColor: "#a9b4a9"}}>
+    border: "1px solid #eee", borderRadius: "5px", backgroundColor: "#f5f9f7"}}>
       <div className="field" >
         <label><h2>TO-DO List</h2></label>
         {/* Controlled input for new task */}
@@ -106,7 +107,7 @@ const List = () => {
         />
       </div>
       {/* Button to add a new task */}
-      <button className="positive ui button " onClick={handleAddTask} style={{marginBottom: "30px", padding: "10px 20px"}}>
+      <button className="add-button " onClick={handleAddTask} style={{marginBottom: "30px", padding: "10px 20px"}}>
         <i className="plus icon"></i>
         Add Task
       </button>
@@ -130,7 +131,7 @@ const Item: React.FC<ItemProps> = (props) => {
     <div className="item" style={{ display: "flex", alignItems: "center", padding: "8px 10px", borderBottom: "1px solid #eee" }}>
       <div className="content" style={{ flexGrow: 2, margin: "10px 0" }}>
         <div className="header"><h3>{desc}</h3></div>
-        <div style={{ margin: "8px 0" }}> <p>{completed ? "Completed" : "Pending"}</p> </div>
+        <div style={{ margin: "8px 0" }}> <p><small>{completed ? "Completed" : "Pending"}</small></p> </div>
       </div>
       <div
         className={`ui checkbox ${completed ? "checked" : "unchecked"}`}
@@ -144,10 +145,11 @@ const Item: React.FC<ItemProps> = (props) => {
         <label></label>
         
       </div>
-      <div onClick={props.onDelete}>
-        <i className="trash icon" style={{ margin: "10px 10px", padding: "8px 10px", color: "#A30000" }} ></i>
-      </div>
+      <button className="trash-button" onClick={props.onDelete}>
+        <i className="trash icon" style={{ color: "#A30000" }} ></i>
+      </button>
     </div>
+    
   );
 };
 

@@ -1,0 +1,66 @@
+body {
+  background-color: #bbd4c9;
+}
+
+/* .list {
+    width: 100%;
+    min-width: 400px ;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: auto;
+    margin: 0 auto;
+    overflow-y: hidden;
+    background-color: blue;
+
+} */
+h2 {
+  color: #4a90a4;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #4a90a4;
+}
+h3 {
+  color: #41ab83;
+}
+p {
+  color: #7d7d7c;
+}
+
+.add-button {
+  background-color: #4a90a4;
+  color: white;
+  border: 1px solid #fff;
+  border-radius: 100px;
+}
+
+.add-button:hover {
+  background-color: #80c6dd;
+  box-shadow: 0 0 0 1px #4a90a4;
+}
+
+/* Style the icon container */
+.trash-button {
+  /* Set a transition to create a smooth animation for any changes */
+  transition: transform 0.2s ease-in-out;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 18px;
+  margin-left: 10px;
+}
+
+/* Define the hover effect */
+.trash-button:hover {
+  /* Scale the button and its contents up by 1.2 times its size on hover */
+  transform: scale(1.5);
+}
+
+/* Style the icon itself */
+.trash-icon {
+  color: #a30000;
+}
