@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./app.css"
 
 function App() {
@@ -23,6 +23,8 @@ const List = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   // State for the new task input value
   const [newTask, setNewTask] = useState("");
+
+  const ref = useRef<HTMLInputElement>(null);
 
   // Fetch todos from backend on mount
   const fetchTodos = async () => {
@@ -104,10 +106,14 @@ const List = () => {
           placeholder="Add a new task..."
           value={newTask}
           onChange={handleInputChange}
+          ref={ref}
+          onLoad={() => 
+          ref.current?.focus()}
+          style={{ padding: "10px", borderRadius: "4px", border: "1px solid #aba", width: "100%" }}
         />
       </div>
       {/* Button to add a new task */}
-      <button className="add-button " onClick={handleAddTask} style={{marginBottom: "30px", padding: "10px 20px"}}>
+      <button className="add-button " onClick={handleAddTask} style={{marginBottom: "30px", padding: "10px 20px"}} >
         <i className="plus icon"></i>
         Add Task
       </button>
